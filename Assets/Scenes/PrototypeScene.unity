@@ -135,6 +135,8 @@ GameObject:
   - component: {fileID: 82256263}
   - component: {fileID: 82256262}
   - component: {fileID: 82256261}
+  - component: {fileID: 82256266}
+  - component: {fileID: 82256265}
   m_Layer: 0
   m_Name: Form_Human
   m_TagString: Form_Human
@@ -220,6 +222,36 @@ Transform:
   m_Father: {fileID: 1457546183}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!143 &82256265
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82256260}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &82256266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82256260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af5165364c6859b4bab2316b5f2fdce7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &493879117
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,6 +264,7 @@ GameObject:
   - component: {fileID: 493879120}
   - component: {fileID: 493879119}
   - component: {fileID: 493879118}
+  - component: {fileID: 493879122}
   m_Layer: 0
   m_Name: Form_Small
   m_TagString: Form_Small
@@ -317,6 +350,24 @@ Transform:
   m_Father: {fileID: 1457546183}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!143 &493879122
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493879117}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5000001
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &551646385
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,7 +744,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1457546183}
   - component: {fileID: 1457546182}
-  - component: {fileID: 1457546184}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -710,7 +760,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1457546181}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a8af9cafebcfc4880ce4b34c29f809, type: 3}
+  m_Script: {fileID: 11500000, guid: 10c8a52004232e145819d50119a435ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   form_Human: {fileID: 82256260}
@@ -735,24 +785,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &1457546184
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1457546181}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1590257514
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,6 +892,7 @@ GameObject:
   - component: {fileID: 1876703149}
   - component: {fileID: 1876703148}
   - component: {fileID: 1876703147}
+  - component: {fileID: 1876703151}
   m_Layer: 0
   m_Name: Form_Flyer
   m_TagString: Form_Flyer
@@ -945,6 +978,24 @@ Transform:
   m_Father: {fileID: 1457546183}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!143 &1876703151
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876703146}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1974232537
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,6 +1103,7 @@ GameObject:
   - component: {fileID: 2005894819}
   - component: {fileID: 2005894818}
   - component: {fileID: 2005894817}
+  - component: {fileID: 2005894821}
   m_Layer: 0
   m_Name: Form_Heavy
   m_TagString: Form_Heavy
@@ -1136,6 +1188,24 @@ Transform:
   m_Father: {fileID: 1457546183}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!143 &2005894821
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005894816}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 1
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1414052293480264476
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1328,6 +1398,10 @@ PrefabInstance:
     - target: {fileID: 5435771628344747244, guid: e069a917724a78b4687f184cf9b11449, type: 3}
       propertyPath: m_TagString
       value: Form_Human
+      objectReference: {fileID: 0}
+    - target: {fileID: 5435771628344747245, guid: e069a917724a78b4687f184cf9b11449, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e069a917724a78b4687f184cf9b11449, type: 3}

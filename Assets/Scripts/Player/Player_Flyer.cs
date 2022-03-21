@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Human : BasePlayer
+public class Player_Flyer : BasePlayer
 {
-    
-
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -19,9 +17,9 @@ public class Player_Human : BasePlayer
     }
 
     public override void ControlMotion()
-    {        
+    {
         base.ControlMotion();
-        speedMult = 3f;
+        speedMult = 5f;
     }
 
     public override void PlayProperties()

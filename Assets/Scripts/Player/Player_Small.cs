@@ -7,7 +7,7 @@ public class Player_Small : BasePlayer
     // Start is called before the first frame update
     void Start()
     {
-
+        AssignComponents();
     }
 
     // Update is called once per frame

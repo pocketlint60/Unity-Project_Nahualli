@@ -9,17 +9,26 @@ public class BasePlayer : MonoBehaviour
     protected float rotSpeed = 2f;
     protected float jumpHeight = 0f;
 
+    protected CharacterController _controller;
+
 
     // Start is called before the first frame update
     void Start()
     {
-
+       
     }
+
+    //AssignComponents() isn't called in BasePlayer but is used in it's subclasses
+    public void AssignComponents()
+    {
+        _controller = gameObject.GetComponent<CharacterController>();
+    }
+
 
     // Update is called once per frame
     void Update()
     {
-        ControlMotion();
+        //ControlMotion();
     }
 
     public virtual void ControlMotion()
@@ -31,7 +40,17 @@ public class BasePlayer : MonoBehaviour
         float inputMagnitude = Mathf.Clamp01(movementDirection.magnitude);
         movementDirection.Normalize();
 
-        transform.Translate((movementDirection * (speedMult) * inputMagnitude * Time.deltaTime), Space.World);
+        //transform.Translate((movementDirection * (speedMult) * inputMagnitude * Time.deltaTime), Space.World);
+
+        if (gameObject.CompareTag("Form_Flyer") != true)
+        {
+            _controller.SimpleMove((movementDirection * inputMagnitude) * speedMult);
+        } else if ((gameObject.CompareTag("Form_Flyer") == true))
+        {
+            //The Flying Form uses Move() instead of SimpleMove() because Move does not have gravity by default
+            _controller.Move(((movementDirection * inputMagnitude) * speedMult)* Time.deltaTime);
+        }
+        
 
         //Rotates player to face the direction of movement
         if (movementDirection != Vector3.zero)
@@ -40,6 +59,7 @@ public class BasePlayer : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotSpeed);
         }
     }
+
 
     public virtual void PlayProperties()
     {

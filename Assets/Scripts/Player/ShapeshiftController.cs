@@ -11,16 +11,24 @@ public class ShapeshiftController : MonoBehaviour
     [SerializeField] GameObject form_Flyer;
     GameObject oldForm;
 
+    //[SerializeField] GameObject fXController;
+    [SerializeField] ParticleController p_Controller;
+    
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
-        GameObject form_Human = this.form_Human;
-        GameObject form_Heavy = this.form_Heavy;
-        GameObject form_Small = this.form_Small;
-        GameObject form_Flyer = this.form_Flyer;
+        //ParticleController p_Controller = gameObject.GetComponentInChildren<ParticleController>();
 
         //PlayProperties();
-        oldForm = form_Human;
+
+        if (oldForm == null)
+        {
+            oldForm = form_Human;
+        }
         oldForm.gameObject.SetActive(true);
 
         print("Current Form: " + oldForm);
@@ -29,7 +37,11 @@ public class ShapeshiftController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //transform.position = oldForm.transform.position;
+        //transform.rotation = oldForm.transform.rotation;
+
         ControlShifting();
+
         //In case the player's current form is accidentally cleared, they will default to human
         if (oldForm == null)
         {
@@ -61,7 +73,7 @@ public class ShapeshiftController : MonoBehaviour
     }
 
     // ENCAPSULATION - The ShapeShift method returns a gameobject that becomes the player's new form when ShapeShift is called
-    //One only needs to call the method and specify an object, and they can transform the player into whatever they want
+    // One only needs to call the method and specify an object, and they can transform the player into whatever they want
     public GameObject ShapeShift(GameObject newForm)
     {
         if (newForm != oldForm)
@@ -74,6 +86,13 @@ public class ShapeshiftController : MonoBehaviour
             newForm.transform.rotation = oldForm.transform.rotation;
 
             newForm.gameObject.SetActive(true);
+            
+            //The visual effects of transformation only occur if they are not currently playing to avoid spam
+            if (p_Controller.shiftSmoke.isPlaying == false)
+            {
+                p_Controller.transform.position = newForm.transform.position;
+                p_Controller.ShiftEffect();
+            }
 
             oldForm = newForm;
         }

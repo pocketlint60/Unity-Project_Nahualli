@@ -4,22 +4,16 @@ using UnityEngine;
 
 public class BasePlayer : MonoBehaviour
 {
-    //CharacterController pControls;
-
     //Basic player properties
     protected float speedMult = 0f;
     protected float rotSpeed = 2f;
-    protected float jumpHeight;
+    protected float jumpHeight = 0f;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        //pControls = gameObject.GetComponent<CharacterController>();
-        //if (pControls == null)
-        {
-            print("Character Controller not found on " + gameObject.name);
-        }
+
     }
 
     // Update is called once per frame
@@ -53,7 +47,6 @@ public class BasePlayer : MonoBehaviour
         // POLYMORPHISM - PlayProperties contains the basic properties of the player character which change depending on form
         //BasePlayer contains the default state held by the parent Player object; this object cannot move
 
-        jumpHeight = 0f;
         PrimeFunction();
     }
 

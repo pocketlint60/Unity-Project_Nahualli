@@ -28,7 +28,7 @@ public class Player_Human : BasePlayer
     public override void ControlJump()
     {
         base.ControlJump();
-        jumpHeight = 10000f;
+        jumpHeight = 1f;
     }
 
     public override void PrimeFunction()

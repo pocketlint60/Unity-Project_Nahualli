@@ -21,8 +21,6 @@ public class ShapeshiftController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //ParticleController p_Controller = gameObject.GetComponentInChildren<ParticleController>();
-
         //PlayProperties();
 
         if (oldForm == null)

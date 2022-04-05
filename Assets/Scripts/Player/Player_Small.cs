@@ -22,9 +22,10 @@ public class Player_Small : BasePlayer
         speedMult = 8f;
     }
 
-    public override void PlayProperties()
+    public override void ControlJump()
     {
-        base.PlayProperties();
+        base.ControlJump();
+        jumpHeight = 3f;
     }
 
     public override void PrimeFunction()

@@ -22,9 +22,11 @@ public class Player_Flyer : BasePlayer
         speedMult = 5f;
     }
 
-    public override void PlayProperties()
+    public override void ControlJump()
     {
-        base.PlayProperties();
+        base.ControlJump();
+        gravity = -0.5f;
+        jumpHeight = 5f;
     }
 
     public override void PrimeFunction()

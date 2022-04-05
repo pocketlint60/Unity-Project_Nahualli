@@ -22,11 +22,6 @@ public class Player_Heavy : BasePlayer
         speedMult = 1f;
     }
 
-    public override void PlayProperties()
-    {
-        base.PlayProperties();
-    }
-
     public override void PrimeFunction()
     {
         base.PrimeFunction();

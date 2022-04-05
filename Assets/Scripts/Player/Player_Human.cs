@@ -16,6 +16,7 @@ public class Player_Human : BasePlayer
     void Update()
     {
         ControlMotion();
+        //ControlJump();
     }
 
     public override void ControlMotion()
@@ -24,9 +25,10 @@ public class Player_Human : BasePlayer
         speedMult = 3f;
     }
 
-    public override void PlayProperties()
+    public override void ControlJump()
     {
-        base.PlayProperties();
+        base.ControlJump();
+        jumpHeight = 10000f;
     }
 
     public override void PrimeFunction()

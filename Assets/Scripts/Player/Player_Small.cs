@@ -19,7 +19,7 @@ public class Player_Small : BasePlayer
     public override void ControlMotion()
     {
         base.ControlMotion();
-        speedMult = 8f;
+        playerSpeed = 11f;
     }
 
     public override void ControlJump()

@@ -22,7 +22,7 @@ public class Player_Human : BasePlayer
     public override void ControlMotion()
     {        
         base.ControlMotion();
-        speedMult = 3f;
+        playerSpeed = 5.5f;
     }
 
     public override void ControlJump()

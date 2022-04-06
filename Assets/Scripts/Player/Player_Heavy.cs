@@ -19,7 +19,7 @@ public class Player_Heavy : BasePlayer
     public override void ControlMotion()
     {
         base.ControlMotion();
-        speedMult = 1f;
+        playerSpeed = 1.5f;
     }
 
     public override void PrimeFunction()

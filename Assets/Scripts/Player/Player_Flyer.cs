@@ -19,13 +19,14 @@ public class Player_Flyer : BasePlayer
     public override void ControlMotion()
     {
         base.ControlMotion();
-        speedMult = 5f;
+        gravity = -1f;
+        playerSpeed = 6.5f;
     }
 
     public override void ControlJump()
     {
         base.ControlJump();
-        gravity = -0.5f;
+        
         jumpHeight = 5f;
     }
 

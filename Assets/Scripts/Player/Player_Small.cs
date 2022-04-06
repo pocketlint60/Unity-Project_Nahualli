@@ -20,12 +20,8 @@ public class Player_Small : BasePlayer
     {
         base.ControlMotion();
         playerSpeed = 11f;
-    }
-
-    public override void ControlJump()
-    {
-        base.ControlJump();
-        jumpHeight = 3f;
+        jumpHeight = 3.5f;
+        rotSpeedA = rotSpeedL/50;
     }
 
     public override void PrimeFunction()

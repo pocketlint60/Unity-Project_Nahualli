@@ -18,16 +18,44 @@ public class Player_Flyer : BasePlayer
 
     public override void ControlMotion()
     {
-        base.ControlMotion();
-        gravity = -1f;
-        playerSpeed = 6.5f;
-    }
 
-    public override void ControlJump()
-    {
-        base.ControlJump();
-        
+        playerSpeed = 4;
         jumpHeight = 5f;
+        gravityA = 0.25f;
+        currentRot = rotSpeedL;
+
+        float inputLR = Input.GetAxis("Horizontal");
+        float inputFB = Input.GetAxis("Vertical");
+
+        if (_controller.isGrounded && moveDir.y <= 0)
+        {
+            moveDir = new Vector3(inputLR, 0, inputFB);
+            if (moveDir.y <= 0)
+            {                
+                moveDir.y -= gravityL * Time.fixedDeltaTime;
+            }
+        }
+        else if (!_controller.isGrounded)
+        {
+            moveDir = new Vector3(inputLR, transform.position.y, inputFB);
+            //moveDir.y -= gravityA * Time.fixedDeltaTime;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //moveDir.y = 0;
+            moveDir.y += jumpHeight;
+        }
+        moveDir *= playerSpeed;
+
+        //Rotates player to face the direction of movement
+        if (moveDir != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(moveDir, Vector3.up);
+            transform.rotation = new Quaternion(0, transform.rotation.y, transform.rotation.z, transform.rotation.w);
+        }
+
+        _controller.Move(moveDir * Time.deltaTime);
     }
 
     public override void PrimeFunction()

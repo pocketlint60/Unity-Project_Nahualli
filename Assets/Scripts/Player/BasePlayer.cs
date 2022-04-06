@@ -7,11 +7,14 @@ public class BasePlayer : MonoBehaviour
     // INHERITANCE - The BasePlayer class functions as a shared interface for all of it's children, which are the forms the player can take
 
     //Basic player properties
-    protected float rotSpeed = 2f;
     protected float playerSpeed = 0f;
+    protected float rotSpeedL = 3f;
+    protected float rotSpeedA;
+    protected float currentRot;
     //protected bool groundedPlayer = true;
     protected float jumpHeight = 0f;
-    protected float gravity = 1.0f;
+    protected float gravityL = 100.0f;
+    protected float gravityA = 1;
     protected Vector3 moveDir;
 
     protected CharacterController _controller;
@@ -44,7 +47,6 @@ public class BasePlayer : MonoBehaviour
             float inputFB = Input.GetAxis("Vertical");
 
             moveDir = new Vector3(inputLR, 0, inputFB);
-            //moveDir = transform.TransformDirection(moveDir);
             moveDir *= playerSpeed;
         }
 
@@ -52,31 +54,34 @@ public class BasePlayer : MonoBehaviour
         if (moveDir != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(moveDir, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotSpeed);
-
-            // The player only rotates on the Y axis when in midair
-            if (_controller.isGrounded)
-            {
-
-            }
-            else if (!_controller.isGrounded)
-            {
-
-            }
-
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, currentRot);
+        } else if (moveDir == Vector3.zero)
+        {
+            transform.rotation = new Quaternion(0, transform.rotation.y, transform.rotation.z, transform.rotation.w);
         }
 
-
-        if (!_controller.isGrounded)
+        if (_controller.isGrounded && moveDir.y <= 0)
         {
-            moveDir.y -= gravity * Time.fixedDeltaTime;
-        }        
-        _controller.Move(moveDir * Time.deltaTime);
-    }
+            currentRot = rotSpeedL;
 
-    public virtual void ControlJump()
-    {        
- 
+            if (moveDir.y <= 0)
+            {
+                moveDir.y -= gravityL * Time.fixedDeltaTime;
+
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    moveDir.y = 0;
+                    moveDir.y = jumpHeight;
+                }
+            }
+        }
+        else if (!_controller.isGrounded)
+        {
+            currentRot = rotSpeedA;
+            moveDir.y -= gravityA * Time.fixedDeltaTime;
+        }
+
+        _controller.Move(moveDir * Time.deltaTime);
     }
 
 

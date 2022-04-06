@@ -20,6 +20,8 @@ public class Player_Heavy : BasePlayer
     {
         base.ControlMotion();
         playerSpeed = 1.5f;
+        jumpHeight = 2f;
+        rotSpeedL = .5f;
     }
 
     public override void PrimeFunction()

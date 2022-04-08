@@ -22,6 +22,7 @@ public class Player_Heavy : BasePlayer
         playerSpeed = 1.5f;
         jumpHeight = 2f;
         rotSpeedL = .5f;
+        rotSpeedA = 0f;
     }
 
     public override void PrimeFunction()

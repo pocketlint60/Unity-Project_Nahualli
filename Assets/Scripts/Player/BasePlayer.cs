@@ -40,12 +40,12 @@ public class BasePlayer : MonoBehaviour
     }
 
     public virtual void ControlMotion()
-    {      
-        if (_controller.isGrounded == true)
-        {
-            float inputLR = Input.GetAxis("Horizontal");
-            float inputFB = Input.GetAxis("Vertical");
+    {
+        float inputLR = Input.GetAxis("Horizontal");
+        float inputFB = Input.GetAxis("Vertical");
 
+        if (_controller.isGrounded == true) //|| gameObject.CompareTag("Form_Flyer"))
+        {
             moveDir = new Vector3(inputLR, 0, inputFB);
             moveDir *= playerSpeed;
         }
@@ -63,22 +63,27 @@ public class BasePlayer : MonoBehaviour
         if (_controller.isGrounded && moveDir.y <= 0)
         {
             currentRot = rotSpeedL;
-
-            if (moveDir.y <= 0)
-            {
-                moveDir.y -= gravityL * Time.fixedDeltaTime;
+            moveDir.y -= gravityL * Time.fixedDeltaTime;
 
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     moveDir.y = 0;
                     moveDir.y = jumpHeight;
                 }
-            }
         }
         else if (!_controller.isGrounded)
         {
             currentRot = rotSpeedA;
             moveDir.y -= gravityA * Time.fixedDeltaTime;
+
+            //Form_Flyer can jump in midair
+            if (Input.GetKeyDown(KeyCode.Space) && gameObject.CompareTag("Form_Flyer"))
+            {
+                moveDir = new Vector3(inputLR, 0, inputFB);
+                moveDir *= playerSpeed;
+                moveDir.y = 0;
+                moveDir.y = jumpHeight;
+            }
         }
 
         _controller.Move(moveDir * Time.deltaTime);

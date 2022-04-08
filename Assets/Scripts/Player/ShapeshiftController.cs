@@ -13,6 +13,7 @@ public class ShapeshiftController : MonoBehaviour
 
     //[SerializeField] GameObject fXController;
     [SerializeField] ParticleController p_Controller;
+    protected CharacterController _controller;
     
 
 
@@ -30,6 +31,8 @@ public class ShapeshiftController : MonoBehaviour
         oldForm.gameObject.SetActive(true);
 
         print("Current Form: " + oldForm);
+
+        _controller = oldForm.gameObject.GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -49,25 +52,28 @@ public class ShapeshiftController : MonoBehaviour
 
     public void ControlShifting()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (_controller.isGrounded)
         {
-            ShapeShift(form_Human);
-        }
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                ShapeShift(form_Human);
+            }
 
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            ShapeShift(form_Heavy);
-        }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                ShapeShift(form_Heavy);
+            }
 
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            ShapeShift(form_Small);
-        }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                ShapeShift(form_Small);
+            }
 
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            ShapeShift(form_Flyer);
-        };
+            else if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                ShapeShift(form_Flyer);
+            }
+        }
     }
 
     // ENCAPSULATION - The ShapeShift method returns a gameobject that becomes the player's new form when ShapeShift is called
@@ -93,6 +99,7 @@ public class ShapeshiftController : MonoBehaviour
             }
 
             oldForm = newForm;
+            _controller = oldForm.gameObject.GetComponent<CharacterController>();
         }
         else
         {

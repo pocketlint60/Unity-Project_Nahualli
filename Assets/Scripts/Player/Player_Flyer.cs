@@ -18,44 +18,36 @@ public class Player_Flyer : BasePlayer
 
     public override void ControlMotion()
     {
+        base.ControlMotion();
 
-        playerSpeed = 4;
         jumpHeight = 5f;
-        gravityA = 0.25f;
         currentRot = rotSpeedL;
 
-        float inputLR = Input.GetAxis("Horizontal");
-        float inputFB = Input.GetAxis("Vertical");
 
-        if (_controller.isGrounded && moveDir.y <= 0)
+
+        //Hold space to glide, slowing your movement and falling
+        if (Input.GetKey(KeyCode.Space) && _controller.velocity.y < 0)
+        {            
+            playerSpeed = 2;
+            rotSpeedL = 0.5f;
+            gravityA = 0.1f;
+        } else if (_controller.velocity.y >= 0 || !Input.GetKey(KeyCode.Space))
         {
-            moveDir = new Vector3(inputLR, 0, inputFB);
-            if (moveDir.y <= 0)
-            {                
-                moveDir.y -= gravityL * Time.fixedDeltaTime;
-            }
-        }
-        else if (!_controller.isGrounded)
-        {
-            moveDir = new Vector3(inputLR, transform.position.y, inputFB);
-            //moveDir.y -= gravityA * Time.fixedDeltaTime;
+            playerSpeed = 4;
+            rotSpeedL = 3f;
+            gravityA = .85f;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        //Unlike the other forms, Flyer can move freely in the air
+        if (_controller.velocity.y != 0)
         {
-            //moveDir.y = 0;
-            moveDir.y += jumpHeight;
-        }
-        moveDir *= playerSpeed;
+            float inputLR = Input.GetAxis("Horizontal");
+            float inputFB = Input.GetAxis("Vertical");
 
-        //Rotates player to face the direction of movement
-        if (moveDir != Vector3.zero)
-        {
-            Quaternion toRotation = Quaternion.LookRotation(moveDir, Vector3.up);
-            transform.rotation = new Quaternion(0, transform.rotation.y, transform.rotation.z, transform.rotation.w);
+            moveDir.x = inputLR * playerSpeed;
+            moveDir.z = inputFB * playerSpeed;
         }
 
-        _controller.Move(moveDir * Time.deltaTime);
     }
 
     public override void PrimeFunction()

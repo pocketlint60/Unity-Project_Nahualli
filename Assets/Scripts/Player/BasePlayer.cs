@@ -7,7 +7,30 @@ public class BasePlayer : MonoBehaviour
     // INHERITANCE - The BasePlayer class functions as a shared interface for all of it's children, which are the forms the player can take
 
     //Basic player properties
-    protected float playerSpeed = 0f;
+
+
+    // ENCAPSULATION - playerSpeed returns a backing field b_playerSpeed
+    // Setter validation ensures that playerSpeed cannot be a negative number; this would invert controls
+    // playerSpeed defaults to 1f in case of this error
+
+    private float b_playerSpeed = 0f;
+    public float playerSpeed
+    {
+        get { return b_playerSpeed; }
+        set { 
+            if (value < 0.0f)
+            {
+                print("playerSpeed cannot be negative because that would invert controls.");
+                b_playerSpeed = 1;
+            }
+            else
+            {
+                b_playerSpeed = value;
+                print(playerSpeed);
+            }            
+        }
+    }
+
     protected float rotSpeedL = 3f;
     protected float rotSpeedA;
     protected float currentRot;
@@ -46,7 +69,7 @@ public class BasePlayer : MonoBehaviour
         if (_controller.isGrounded == true)
         {
             moveDir = new Vector3(inputLR, 0, inputFB);
-            moveDir *= playerSpeed;
+            moveDir *= b_playerSpeed;
         }
 
         //Rotates player to face the direction of movement
@@ -80,7 +103,7 @@ public class BasePlayer : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && gameObject.CompareTag("Form_Flyer"))
             {
                 moveDir = new Vector3(inputLR, 0, inputFB);
-                moveDir *= playerSpeed;
+                moveDir *= b_playerSpeed;
                 moveDir.y = 0;
                 moveDir.y = jumpHeight;
             }

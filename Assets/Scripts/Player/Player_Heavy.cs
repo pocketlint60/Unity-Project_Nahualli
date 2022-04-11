@@ -24,9 +24,4 @@ public class Player_Heavy : BasePlayer
         rotSpeedL = .5f;
         rotSpeedA = 0f;
     }
-
-    public override void PrimeFunction()
-    {
-        base.PrimeFunction();
-    }
 }

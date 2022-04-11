@@ -16,14 +16,13 @@ public class Player_Flyer : BasePlayer
         ControlMotion();
     }
 
+    // POLYMORPHISM - Each of the playable forms overrides the ControlMotion method to slightly modify - or in Form_Flyer's case, completely alter - the way movement is handled.
     public override void ControlMotion()
     {
         base.ControlMotion();
 
         jumpHeight = 5f;
         currentRot = rotSpeedL;
-
-
 
         //Hold space to glide, slowing your movement and falling
         if (Input.GetKey(KeyCode.Space) && _controller.velocity.y < 0)
@@ -47,11 +46,5 @@ public class Player_Flyer : BasePlayer
             moveDir.x = inputLR * playerSpeed;
             moveDir.z = inputFB * playerSpeed;
         }
-
-    }
-
-    public override void PrimeFunction()
-    {
-        base.PrimeFunction();
     }
 }

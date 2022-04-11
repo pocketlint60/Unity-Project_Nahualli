@@ -22,8 +22,6 @@ public class ShapeshiftController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //PlayProperties();
-
         if (oldForm == null)
         {
             oldForm = form_Human;
@@ -76,7 +74,7 @@ public class ShapeshiftController : MonoBehaviour
         }
     }
 
-    // ENCAPSULATION - The ShapeShift method returns a gameobject that becomes the player's new form when ShapeShift is called
+    // ABSTRACTION - The ShapeShift method returns a gameobject that becomes the player's new form when ShapeShift is called
     // One only needs to call the method and specify an object, and they can transform the player into whatever they want
     public GameObject ShapeShift(GameObject newForm)
     {

@@ -25,9 +25,4 @@ public class Player_Human : BasePlayer
         jumpHeight = 5f;
         rotSpeedA = rotSpeedL/20;
     }
-
-    public override void PrimeFunction()
-    {
-        base.PrimeFunction();
-    }
 }

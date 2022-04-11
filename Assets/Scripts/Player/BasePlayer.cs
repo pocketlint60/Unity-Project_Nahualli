@@ -11,7 +11,6 @@ public class BasePlayer : MonoBehaviour
     protected float rotSpeedL = 3f;
     protected float rotSpeedA;
     protected float currentRot;
-    //protected bool groundedPlayer = true;
     protected float jumpHeight = 0f;
     protected float gravityL = 100.0f;
     protected float gravityA = 1;
@@ -44,7 +43,7 @@ public class BasePlayer : MonoBehaviour
         float inputLR = Input.GetAxis("Horizontal");
         float inputFB = Input.GetAxis("Vertical");
 
-        if (_controller.isGrounded == true) //|| gameObject.CompareTag("Form_Flyer"))
+        if (_controller.isGrounded == true)
         {
             moveDir = new Vector3(inputLR, 0, inputFB);
             moveDir *= playerSpeed;
@@ -57,6 +56,7 @@ public class BasePlayer : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, currentRot);
         } else if (moveDir == Vector3.zero)
         {
+            //Prevent the player model from aiming downwards when grounded
             transform.rotation = new Quaternion(0, transform.rotation.y, transform.rotation.z, transform.rotation.w);
         }
 
@@ -87,13 +87,5 @@ public class BasePlayer : MonoBehaviour
         }
 
         _controller.Move(moveDir * Time.deltaTime);
-    }
-
-
-    // POLYMORPHISM - PrimeFunction is an overridable function that does nothing in BasePlayer but can be customized by each form
-    //PrimeFunction is a special interaction that changes depending on the ShapeShifter's form
-    public virtual void PrimeFunction()
-    {
-
     }
 }

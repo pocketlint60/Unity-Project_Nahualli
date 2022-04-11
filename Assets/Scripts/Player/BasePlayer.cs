@@ -11,7 +11,7 @@ public class BasePlayer : MonoBehaviour
 
     // ENCAPSULATION - playerSpeed returns a backing field b_playerSpeed
     // Setter validation ensures that playerSpeed cannot be a negative number; this would invert controls
-    // playerSpeed defaults to 1f in case of this error
+    // playerSpeed defaults to 0f in case of this error
 
     private float b_playerSpeed = 0f;
     public float playerSpeed
@@ -21,12 +21,11 @@ public class BasePlayer : MonoBehaviour
             if (value < 0.0f)
             {
                 print("playerSpeed cannot be negative because that would invert controls.");
-                b_playerSpeed = 1;
+                b_playerSpeed = 0.0f;
             }
             else
             {
                 b_playerSpeed = value;
-                print(playerSpeed);
             }            
         }
     }
